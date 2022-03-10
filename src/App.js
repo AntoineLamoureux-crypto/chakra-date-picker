@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import DatePicker from "./DatePicker/DatePicker";
+import { SINGLE_SELECTION_MODE, MINDATE, MAXDATE } from './DatePicker/utils'
+import { LANG_EN, LANG_FR } from './DatePicker/utils'
 
 function App() {
+    const [currentDate, setCurrentDate ] = useState()
+    const configs = {
+        minDate: MINDATE, 
+        maxDate: MAXDATE,
+        selectionMode: SINGLE_SELECTION_MODE,
+        lang: LANG_FR
+    }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <DatePicker configs={configs} value={currentDate} onChange={setCurrentDate} />
+    </>
   );
 }
 
