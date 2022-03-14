@@ -42,6 +42,7 @@ const Dropdown = forwardRef(({ name, options, value, onChange, onTextChange, ...
     if (isEnterKeyCode) {
       setText(options[active].label)
       setIsOpen(false)
+      // Il manque a set le focus du input a off lorsqu'on click Enter
       var element = document.getElementById('dropdownId');
       element.blur();
     }
