@@ -3,8 +3,7 @@ import { useDayzed } from 'dayzed';
 import Calendar from './Calendar'
 
 function SingleSelection({ currentDate, setCurrentDate, setIsOpen, configs}) {
-
-    const [nextOffset, setNextOffset] = useState(0)
+    const [offset, setOffset] = useState(0)
 
     function handleOnDateSelected({ date }) {
       setCurrentDate(date);
@@ -13,13 +12,14 @@ function SingleSelection({ currentDate, setCurrentDate, setIsOpen, configs}) {
     };
 
     function handleOnOffsetChanged({ offset }) {
-      setNextOffset(offset);
+      setOffset(offset);
+      console.log(offset)
     };
 
     const props = {
         selected: currentDate,
         onDateSelected: handleOnDateSelected,
-        offset: nextOffset,
+        offset: offset,
         onOffsetChanged: handleOnOffsetChanged,
         minDate: configs.minDate,
         maxDate: configs.maxDate,
