@@ -16,8 +16,8 @@ function Calendar({ calendars, getBackProps, getForwardProps, getDateProps, lang
           <Stack key={`${calendar.month}${calendar.year}`} display={'inline-block'} width={'50%'} p={'0 10px 30px'} boxSizing={'border-box'} boxShadow={'lg'} borderRadius={'lg'} boxSize={'400px'} height={'container.xm'} textAlign={'center'} border={'transparent'}>
             <Box my={2}>
                 <Button mx={1} _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getBackProps({calendars, offset: 12 })}> {<FaAngleDoubleLeft />} </Button>
-                <Button mx={1} _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getBackProps({ calendars, offset: 1 })}> {<FaAngleLeft />} </Button>
-                <Button mx={1} _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getForwardProps({ calendars, offset: 1 })}> {<FaAngleRight />} </Button>
+                <Button mx={1} _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getBackProps({ calendars })}> {<FaAngleLeft />} </Button>
+                <Button mx={1} _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getForwardProps({ calendars })}> {<FaAngleRight />} </Button>
                 <Button mx={1} _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getForwardProps({ calendars, offset: 12 })}> {<FaAngleDoubleRight />} </Button>
                 <Box>
                     <Text fontSize={'large'} fontWeight={'medium'} fontStyle={'initial'}>{(lang === LANG_EN ?  monthNamesShortEN[calendar.month] : monthNamesShortFR[calendar.month])} {calendar.year}</Text>

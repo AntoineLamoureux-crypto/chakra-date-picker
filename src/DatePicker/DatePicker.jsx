@@ -17,7 +17,7 @@ function DatePicker({ configs, value, onChange }) {
                 </PopoverTrigger>
                 <PopoverContent>
                     <PopoverBody >
-                        {configs.selectionMode === SINGLE_SELECTION_MODE ? <SingleSelection currentDate={value} setCurrentDate={onChange} setIsOpen={setIsOpen} configs={configs} />: <> </> }
+                        {configs.selectionMode === SINGLE_SELECTION_MODE ? <SingleSelection value={value} onChange={onChange} setIsOpen={setIsOpen} configs={configs} />: <> </> }
                     </PopoverBody>
                 </PopoverContent>
             </InputGroup>

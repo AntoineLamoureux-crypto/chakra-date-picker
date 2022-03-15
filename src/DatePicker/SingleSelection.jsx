@@ -2,22 +2,21 @@ import React, { useState } from 'react'
 import { useDayzed } from 'dayzed';
 import Calendar from './Calendar'
 
-function SingleSelection({ currentDate, setCurrentDate, setIsOpen, configs}) {
-    const [offset, setOffset] = useState(0)
+function SingleSelection({ value, onChange, setIsOpen, configs}) {
+    const [offset, setOffset] = useState()
 
     function handleOnDateSelected({ date }) {
-      setCurrentDate(date);
+      onChange(date);
       console.log(date)
       setIsOpen(false)
     };
 
     function handleOnOffsetChanged({ offset }) {
       setOffset(offset);
-      console.log(offset)
     };
 
     const props = {
-        selected: currentDate,
+        selected: value,
         onDateSelected: handleOnDateSelected,
         offset: offset,
         onOffsetChanged: handleOnOffsetChanged,
@@ -25,7 +24,7 @@ function SingleSelection({ currentDate, setCurrentDate, setIsOpen, configs}) {
         maxDate: configs.maxDate,
     }
 
-    let dayzedData = useDayzed(props)
+    const dayzedData = useDayzed(props)
 
     return (
         <Calendar {...dayzedData} lang={configs.lang} />

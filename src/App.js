@@ -39,8 +39,8 @@ function App() {
 
   return (
     <>
-      {/*<DatePicker configs={configs} value={currentDate} onChange={setCurrentDate} />*/}
-      <Dropdown options={options} value={currentText} onChange={onChange} onTextChange={onTextChange} />
+      {<DatePicker configs={configs} value={currentDate} onChange={setCurrentDate} />}
+      {/*<Dropdown options={options} value={currentText} onChange={onChange} onTextChange={onTextChange} />*/}
     </>
   );
 }
