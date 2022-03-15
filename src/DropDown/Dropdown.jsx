@@ -25,8 +25,8 @@ const Dropdown = forwardRef(({ name, options, value, onChange, onTextChange, ...
     setText(text);
     setActive(0)
     onTextChange(text);
-    setIsOpen(options.length > 0 && isSearchActive.current)
     isSearchActive.current = true;
+    setIsOpen(options.length > 0 && isSearchActive.current)
   };
 
   const keyDownHandler = (event) => {
