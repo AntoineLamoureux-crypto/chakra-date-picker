@@ -1,12 +1,13 @@
 import { forwardRef, useState, useRef, useEffect } from 'react';
 import _ from 'lodash'
-import { Input, Box, Popover, PopoverTrigger, PopoverContent, Text } from '@chakra-ui/react';
+import { Input, Box, Popover, PopoverTrigger, PopoverContent, Text, useColorMode } from '@chakra-ui/react';
 
 const Dropdown = forwardRef(({ name, options, value, onChange, onTextChange, ...props }, ref) => {
   const isSearchActive = useRef(false);
   const [text, setText] = useState('');
   const [active, setActive] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const { colorMode } = useColorMode()
 
   useEffect(async () => {
     if (value) {
@@ -64,7 +65,7 @@ const Dropdown = forwardRef(({ name, options, value, onChange, onTextChange, ...
         </PopoverTrigger>
         <PopoverContent w="500px">
         {options?.map((option, i) => (
-           <Option key={option.value} i={i} {...option} onChange={handleChange} />
+           <Option key={option.value} i={i} {...option} onChange={handleChange} setIsOpen={setIsOpen}/>
         ))}
         </PopoverContent>
       </Popover>
@@ -72,9 +73,16 @@ const Dropdown = forwardRef(({ name, options, value, onChange, onTextChange, ...
   );
 
   function Option({ label, value, onChange, i }) {
+    function updateText() {
+      onChange(value);
+      setIsOpen(false)
+    }
     return (
-      <Box onClick={() => onChange(value)} p={1} bgColor={active === i ? 'gray.100' : ''} fontWeight={active === i ? 'bold' : ''}>
-        <Text>{label}</Text>
+      <Box onClick={() => updateText(value)} p={1} 
+           bgColor={active === i ? (colorMode === 'light' ? 'gray.50' : 'gray.500') : ''} 
+           fontWeight={active === i ? 'bold' : ''}
+      >
+        <Text cursor={'pointer'}>{label}</Text>
       </Box>
     );
   }

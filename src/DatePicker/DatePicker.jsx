@@ -9,11 +9,11 @@ function DatePicker({ configs, value, onChange }) {
     const [isOpen, setIsOpen] = useState(false)
 
     return <>
-        <Popover isLazy isOpen={isOpen}>
+        <Popover isOpen={isOpen} bgColor={'white'}>
             <InputGroup>
                 <Input type={'date-fn'} placeholder={value == null ? 'Select a date' : value} isReadOnly={true}/>    
                 <PopoverTrigger>
-                    <InputRightElement children={<CalendarIcon color={'gray.300'} _hover={{color: 'gray.600'}} />} cursor={'pointer'} onClick={()=> setIsOpen(true)}/>
+                    <InputRightElement children={<CalendarIcon  _hover={{color: 'gray.600'}} />} cursor={'pointer'} onClick={()=> setIsOpen(true)}/>
                 </PopoverTrigger>
                 <PopoverContent>
                     <PopoverBody >

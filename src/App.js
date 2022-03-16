@@ -5,7 +5,7 @@ import Dropdown from './DropDown/Dropdown'
 import Progress from './ProgressBar/Progress'
 import { SINGLE_SELECTION_MODE, MINDATE, MAXDATE } from './DatePicker/utils'
 import { LANG_EN, LANG_FR } from './DatePicker/utils'
-import { Button, Box } from "@chakra-ui/react";
+import { Button, Box, useColorMode } from "@chakra-ui/react";
 
 
 const items = [
@@ -23,7 +23,8 @@ function App() {
   const [curentPosition, setCurentPosition] = useState(1);
   const [options, setOtions] = useState(items);
   const [currentText, setCurrentText] = useState('');
-  const numberOfSteps = 4
+  const numberOfSteps = 5
+  const { colorMode, toggleColorMode } = useColorMode()
 
   const configs = {
     minDate: MINDATE,
@@ -54,6 +55,10 @@ function App() {
   return (
     <>
     <Box w={'700px'} mx={'auto'}>
+      <Button onClick={toggleColorMode}>
+        Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+      </Button>
+      <br/>
       {<DatePicker configs={configs} value={currentDate} onChange={setCurrentDate} />}
       <br/>
       {<Progress numberOfSteps={numberOfSteps} stepPosition={curentPosition} />}
@@ -62,7 +67,9 @@ function App() {
       {curentPosition}
       <br/>
       {<><Box display={'inline-flex'}><Button onClick={()=> handleClick(-1)} mr={5}>Previous</Button><br/><Button onClick={()=> handleClick(1)}>Next</Button></Box></>}
-      {/*<Dropdown options={options} value={currentText} onChange={onChange} onTextChange={onTextChange} />*/}
+      <br/>
+      <br/>
+      {<Dropdown options={options} value={currentText} onChange={onChange} onTextChange={onTextChange} />}
       </Box>
     </>
   );

@@ -38,7 +38,7 @@ function Calendar({ calendars, getBackProps, getForwardProps, getDateProps, lang
                 }
                 var { date, selected, today } = dateObj;
                 return (
-                  <Button key={key} {...getDateProps({ dateObj })} borderRadius={'full'} size={'md'} display={'inline-block'} width={'calc(100% / 7)'} border={'none'} bgColor={today && !selected ? 'gray.100' : selected ? 'blue.100' : 'transparent' }>
+                  <Button key={key} {...getDateProps({ dateObj })} borderRadius={'full'} size={'md'} display={'inline-block'} width={'calc(100% / 7)'} border={'none'} bgColor={today && !selected ? 'gray.300' : selected ? 'blue.300' : 'transparent' }>
                     { date.getDate() }
                   </Button>
                 );
