@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import _ from 'lodash'
 import DatePicker from "./DatePicker/DatePicker";
 import Dropdown from './DropDown/Dropdown'
+import DropdownList from './DropDownList/DropdownList'
 import Progress from './ProgressBar/Progress'
 import { SINGLE_SELECTION_MODE, MINDATE, MAXDATE } from './DatePicker/utils'
 import { LANG_EN, LANG_FR } from './DatePicker/utils'
@@ -23,8 +24,9 @@ function App() {
   const [curentPosition, setCurentPosition] = useState(1);
   const [options, setOtions] = useState(items);
   const [currentText, setCurrentText] = useState('');
-  const numberOfSteps = 5
+  const numberOfSteps = 3
   const { colorMode, toggleColorMode } = useColorMode()
+  const [tags, setTags] = useState([]);
 
   const configs = {
     minDate: MINDATE,
@@ -35,7 +37,6 @@ function App() {
 
   function onTextChange(text) {
     const newOptions = _.filter(items, item => item.label.includes(text))
-    console.log(newOptions)
     setOtions(newOptions)
   }
 
@@ -70,6 +71,9 @@ function App() {
       <br/>
       <br/>
       {<Dropdown options={options} value={currentText} onChange={onChange} onTextChange={onTextChange} />}
+      <br/>
+      <br/>
+      {<DropdownList options={options} value={currentText} onChange={onChange} onTextChange={onTextChange} tags={tags} setTags={setTags} />}
       </Box>
     </>
   );
