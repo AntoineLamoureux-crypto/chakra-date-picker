@@ -1,6 +1,7 @@
 import { forwardRef, useState, useRef, useEffect } from 'react';
 import _ from 'lodash'
-import { Input, Box, Popover, PopoverTrigger, PopoverContent, Text, useColorMode, InputLeftElement, InputGroup, Divider } from '@chakra-ui/react';
+import { Input, Box, Popover, PopoverTrigger, PopoverContent, Text, useColorMode, InputGroup, InputLeftAddon } from '@chakra-ui/react';
+import { List, ListItem, ListIcon } from "@chakra-ui/react"
 import { CloseIcon } from '@chakra-ui/icons'
 
 const DropdownList = forwardRef(({ name, options, value, onChange, onTextChange, tags, setTags, ...props }, ref) => {
@@ -43,33 +44,30 @@ const DropdownList = forwardRef(({ name, options, value, onChange, onTextChange,
 
   return (
     <Box w="full" {...props}>
-      <Box>
-      
-      </Box>
       <Popover isOpen={isOpen} autoFocus={false} matchWidth >
         <PopoverTrigger>
-        <Box display= 'flex' align-items= 'flex-start' flex-wrap= 'wrap' >
-        <Box my={'auto'} bgColor={'gray.50'} display={'inline-flex'} w={'auto'}>
-            {tags.map((tag, index) => (
-              <>
-                <Text key={index} mx={2}>{tag}</Text>
-                <CloseIcon onClick={() => removeTags(tag)} cursor={'pointer'} my={'auto'}/>
-              </>
-            ))}
+          <Box display={'flex'} alignItems={'flex-start'} flexWrap={'wrap'} border={'1px solid rgb(214, 216, 218)'} borderRadius={'lg'}>
+            <List display={'flex'} flexWrap={'wrap'} my={'auto'}>
+                {tags.map((tag, index) => (
+                  <ListItem key={index} display={'flex'} alignItems={'center'} >
+                    <Tag tag={tag} removeTags={removeTags}/>
+                  </ListItem>
+                ))}
+            </List>
+            <Input 
+              ref={ref}
+              name={name}
+              type={'text'}
+              value={text}
+              autoComplete="off"
+              onChange={(e) => handleTextChange(e.target.value)}
+              isRequired={true}
+              id={"dropdownId"}
+              flex={1}
+              border={'none'}
+              _focus={{outline: 'transparent'}}
+            />
           </Box>
-        <Input 
-            ref={ref}
-            name={name}
-            type={'text'}
-            value={text}
-            autoComplete="off"
-            onChange={(e) => handleTextChange(e.target.value)}
-            isRequired={true}
-            id={"dropdownId"}
-          >
-          </Input>
-        </Box>
-          
         </PopoverTrigger>
         <PopoverContent w="500px">
         {options?.map((option, i) => (
@@ -93,6 +91,19 @@ const DropdownList = forwardRef(({ name, options, value, onChange, onTextChange,
     );
   }
 });
+
+  function Tag({index, tag, removeTags}) {
+    return(
+      <Box key={index} display={'flex'} borderRadius={'md'} bgColor={'gray.200'} w={'auto'} ml={2}>
+        <Box mx={2} my={'auto'}>
+          <Text> {tag} </Text>
+        </Box>
+        <Box _hover={{bgColor: 'red.100'}}  borderTopRightRadius={'md'} borderBottomRightRadius={'md'} pb={1} px={2}>
+          <CloseIcon onClick={() => removeTags(tag)} cursor={'pointer'} boxSize={'11px'} mx={1} _hover={{color: 'red'}}/>
+        </Box>
+      </Box>
+    )
+  }
 
 DropdownList.displayName = 'DropdownList';
 
