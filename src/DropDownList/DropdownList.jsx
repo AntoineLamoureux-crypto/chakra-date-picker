@@ -1,6 +1,6 @@
 import { forwardRef, useState, useRef, useEffect } from 'react';
 import _ from 'lodash'
-import { Input, Box, Popover, PopoverTrigger, PopoverContent, Text, useColorMode, InputGroup, InputLeftAddon } from '@chakra-ui/react';
+import { Input, Box, Popover, PopoverTrigger, PopoverContent, Text, useColorMode } from '@chakra-ui/react';
 import { List, ListItem, ListIcon } from "@chakra-ui/react"
 import { CloseIcon } from '@chakra-ui/icons'
 
@@ -46,7 +46,7 @@ const DropdownList = forwardRef(({ name, options, value, onChange, onTextChange,
     <Box w="full" {...props}>
       <Popover isOpen={isOpen} autoFocus={false} matchWidth >
         <PopoverTrigger>
-          <Box display={'flex'} alignItems={'flex-start'} flexWrap={'wrap'} border={'1px solid rgb(214, 216, 218)'} borderRadius={'lg'}>
+          <Box display={'flex'} alignItems={'flex-start'} flexWrap={'wrap'} border={colorMode === 'light' ? '1px solid #D6D8DA' : '1px solid #555555'} borderRadius={'lg'}>
             <List display={'flex'} flexWrap={'wrap'} my={'auto'}>
                 {tags.map((tag, index) => (
                   <ListItem key={index} display={'flex'} alignItems={'center'} >

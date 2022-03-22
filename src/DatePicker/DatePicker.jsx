@@ -9,7 +9,7 @@ function DatePicker({ configs, value, onChange }) {
     const [isOpen, setIsOpen] = useState(false)
 
     return <>
-        <Popover isOpen={isOpen} bgColor={'white'}>
+        <Popover isOpen={isOpen}>
             <InputGroup>
                 <Input type={'date-fn'} placeholder={value == null ? 'Select a date' : value} isReadOnly={true}/>    
                 <PopoverTrigger>

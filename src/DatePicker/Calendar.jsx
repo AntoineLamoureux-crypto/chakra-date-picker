@@ -2,23 +2,27 @@ import React from 'react'
 import { Button, Box, Stack, Text } from '@chakra-ui/react'
 import { FaAngleDoubleRight, FaAngleDoubleLeft, FaAngleRight, FaAngleLeft } from 'react-icons/fa'
 import { LANG_EN } from './utils'
+import { useColorMode } from '@chakra-ui/react'
 
 const monthNamesShortEN= [ 'Janurary', 'Feburary', 'Mars', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ];
 const monthNamesShortFR = [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre' ];
 const weekdayNamesShortEN = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 const weekdayNamesShortFR = ['D', 'L', 'Ma', 'Me', 'J', 'V', 'S'];
 
+
 function Calendar({ calendars, getBackProps, getForwardProps, getDateProps, lang }) {
+  const { colorMode } = useColorMode()
+
   if (calendars.length) {
     return (
       <>
         {calendars.map(calendar => (
-          <Stack key={`${calendar.month}${calendar.year}`} display={'inline-block'} width={'50%'} p={'0 10px 30px'} boxSizing={'border-box'} boxShadow={'lg'} borderRadius={'lg'} boxSize={'400px'} height={'container.xm'} textAlign={'center'} border={'transparent'}>
+          <Stack key={`${calendar.month}${calendar.year}`} display={'inline-block'} opacity={'1'} width={'50%'} p={'0 10px 30px'} boxSizing={'border-box'} boxShadow={'lg'} borderRadius={'lg'} boxSize={'400px'} height={'container.xm'} textAlign={'center'} border={'transparent'} bgColor={colorMode === 'light' ? 'white' : '#1A202C'}>
             <Box my={2}>
-                <Button mx={1} _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getBackProps({calendars, offset: 12 })}> {<FaAngleDoubleLeft />} </Button>
-                <Button mx={1} _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getBackProps({ calendars })}> {<FaAngleLeft />} </Button>
-                <Button mx={1} _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getForwardProps({ calendars })}> {<FaAngleRight />} </Button>
-                <Button mx={1} _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getForwardProps({ calendars, offset: 12 })}> {<FaAngleDoubleRight />} </Button>
+                <Button _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getBackProps({calendars, offset: 12 })}> {<FaAngleDoubleLeft />} </Button>
+                <Button _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getBackProps({ calendars })}> {<FaAngleLeft />} </Button>
+                <Button _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getForwardProps({ calendars })}> {<FaAngleRight />} </Button>
+                <Button _hover={{bgColor: 'transparent'}} bgColor={'transparent'} {...getForwardProps({ calendars, offset: 12 })}> {<FaAngleDoubleRight />} </Button>
                 <Box>
                     <Text fontSize={'large'} fontWeight={'medium'} fontStyle={'initial'}>{(lang === LANG_EN ?  monthNamesShortEN[calendar.month] : monthNamesShortFR[calendar.month])} {calendar.year}</Text>
                 </Box>
