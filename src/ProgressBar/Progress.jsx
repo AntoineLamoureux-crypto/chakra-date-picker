@@ -13,8 +13,8 @@ function Progress({numberOfSteps, stepPosition}) {
             {steps.map(function(item){ 
                 return <>
                     <Box 
-                        key={item} 
-                        bgColor={stepPosition >= item ? 'blue.'+ (item + 2) +'00' : 'gray.100'} 
+                        key={item}
+                        bgColor={stepPosition > item ? 'green.500' : stepPosition === item ? 'blue.800' : 'gray.100'} 
                         borderLeftRadius={item === 1 ? 'md' : ''} 
                         borderRightRadius={numberOfSteps === item ? 'md' : ''}
                         height={'10px'}
