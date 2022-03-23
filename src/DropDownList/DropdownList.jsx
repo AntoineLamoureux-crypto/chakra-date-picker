@@ -17,13 +17,11 @@ const DropdownList = forwardRef(({ name, options, value, onChange, onTextChange,
     setIsOpen(options.length > 0 && isSearchActive.current)
   }, [value]);
 
-  // eslint-disable-next-line no-shadow
   const handleChange = (value) => {
     isSearchActive.current = false;
     onChange(value);
   };
 
-  // eslint-disable-next-line no-shadow
   const handleTextChange = (text) => {
     setText(text);
     onTextChange(text);
@@ -49,7 +47,7 @@ const DropdownList = forwardRef(({ name, options, value, onChange, onTextChange,
           <Box display={'flex'} alignItems={'flex-start'} flexWrap={'wrap'} border={colorMode === 'light' ? '1px solid #D6D8DA' : '1px solid #555555'} borderRadius={'lg'}>
             <List display={'flex'} flexWrap={'wrap'} my={'auto'}>
                 {tags.map((tag, index) => (
-                  <ListItem key={index} display={'flex'} alignItems={'center'} >
+                  <ListItem key={index} display={'flex'} alignItems={'center'} mt={1}>
                     <Tag tag={tag} removeTags={removeTags}/>
                   </ListItem>
                 ))}
@@ -65,7 +63,7 @@ const DropdownList = forwardRef(({ name, options, value, onChange, onTextChange,
               id={"dropdownId"}
               flex={1}
               border={'none'}
-              _focus={{outline: 'transparent'}}
+              _focus={{ outline: 'transparent' }}
             />
           </Box>
         </PopoverTrigger>

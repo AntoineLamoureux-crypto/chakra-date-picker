@@ -10,10 +10,10 @@ function Progress({numberOfSteps, stepPosition}) {
   return (
     <Box w={'100%'}>
         <Grid templateColumns={`repeat(${numberOfSteps}, 1fr)`} gap={2} >
-            {steps.map(function(item){ 
+            {steps.map(function(item, i){ 
                 return <>
                     <Box 
-                        key={item}
+                        key={i}
                         bgColor={stepPosition > item ? 'green.500' : stepPosition === item ? 'blue.800' : 'gray.100'} 
                         borderLeftRadius={item === 1 ? 'md' : ''} 
                         borderRightRadius={numberOfSteps === item ? 'md' : ''}
